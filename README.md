@@ -1,4 +1,4 @@
-# Tapestry 5 jQuery Mobile integration Module - 1.0-SNAPSHOT
+# Tapestry 5 jQuery jqgrid integration Module - 1.0-SNAPSHOT
 
 ## Changelog
 
@@ -6,7 +6,7 @@
 
 ## Features
 
-This module provides jQuery mobile integration for Tapestry.
+This module provides jQuery jqgrid integration for Tapestry.
 
 
 ## How to use it
@@ -16,7 +16,7 @@ This module provides jQuery mobile integration for Tapestry.
 ## Important notice
 
 Please be aware that not every core components are working correctly at the moment. There is still lot of developments to do. 
-All kind of feedback is very welcome. Please use [Github issues system](http://github.com/got5/tapestry5-jquery-mobile/issues) for that.
+All kind of feedback is very welcome. Please use [Github issues system](http://github.com/got5/tapestry5-jquery-jqgrid/issues) for that.
  
 
 ## More Informations & contacts
