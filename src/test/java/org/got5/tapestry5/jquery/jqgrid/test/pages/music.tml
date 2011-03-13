@@ -1,0 +1,25 @@
+<html t:type="layout" t:pageTitle="test it!"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+      xmlns:p="tapestry:parameter">
+      
+<h1>Grid Demo</h1>
+
+    <!--  table t:id="grid" source="tracks" row="track">
+        <t:parameter name="ratingheader">
+            <t:actionlink t:id="sortRating">Sort Rating</t:actionlink>
+        </t:parameter>
+        
+    </table>
+
+    <p>
+        [<t:actionlink t:id="reset">reset the Grid</t:actionlink>]
+    </p-->
+    
+    <t:jquery-jqgrid.jqgrid t:dataSource="celebritySource" t:model="Model" rowsPerPage="5"/> 
+    
+    <t:grid t:source="celebritySource" rowsPerPage="5" row="celebrity"
+		remove="id, biography, birthDateVerified"
+		reorder="lastName,firstName,occupation,dateOfBirth">
+	</t:grid>
+    
+</html>
