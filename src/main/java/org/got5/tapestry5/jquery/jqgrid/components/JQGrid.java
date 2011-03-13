@@ -143,10 +143,21 @@ public class JQGrid implements ClientElement
  
  private String clientId;
 
- private static final String RESULT = "result";
+ 
 
- private static final String ERROR = "error";
+ 
  private static final String PAGE = "page";
+
+ private static final String SEARCH = "search";
+ private static final String SEARCH_FIELD = "searchField";
+ private static final String SEARCH_STRING = "searchString";
+ private static final String SEARCH_OPER = "searchOper";
+
+ private static final String ND = "nd";
+ private static final String ROWS = "rows";
+ private static final String SIDX = "sidx";
+ private static final String SORD = "sord";
+ 
 
 
 
@@ -155,19 +166,41 @@ public class JQGrid implements ClientElement
  /**
 * Ajax event handler, form client side to get the data to display
 * to parse it according to the server-side format. 
+* see http://www.trirand.com/jqgridwiki/doku.php?id=wiki:retrieving_data for more details
 */
  @OnEvent(value="Data")
  JSONObject onData()
  {
      String page = request.getParameter(PAGE);
+     
+     int requestedPageNumber=Integer.parseInt(page);
+     String search = request.getParameter(SEARCH);
+     String searchField = request.getParameter(SEARCH_FIELD);
+     String searchString = request.getParameter(SEARCH_STRING);
+     String searchOper = request.getParameter(SEARCH_OPER);
+     //searchField=tax&searchString=100&searchOper=gt
+     
+     
+     String nd = request.getParameter(ND);
+     
+     String rowsSelected = request.getParameter(ROWS);
+     int rowsPerPage=Integer.parseInt(rowsSelected);
+     
+     String sidx = request.getParameter(SIDX);
+     String sord = request.getParameter(SORD);
+     
      JSONObject response = new JSONObject();
      int records = dataSource.getAvailableRows();
-     int pageNumber=Integer.parseInt(page);
-     int nbPages= records/rowsPerPage;
      
-     int startIndex=0 + (pageNumber-1)*rowsPerPage;
-     int endIndex= startIndex + rowsPerPage ;
-     response.put("page",pageNumber);
+     int nbPages= records/rowsPerPage;
+     int modulo = records%rowsPerPage;
+     if(modulo>0) nbPages++;
+     
+     int startIndex=0 + (requestedPageNumber-1)*rowsPerPage;
+     int endIndex= startIndex + rowsPerPage -1;
+     if(endIndex>records-1) endIndex= records-1;
+     
+     response.put("page",requestedPageNumber);
      response.put("total", nbPages);
      
      response.put("records", records);
@@ -178,7 +211,7 @@ public class JQGrid implements ClientElement
      
      JSONArray rows = new JSONArray();
      
-     for(int index=startIndex;index< endIndex;index++)
+     for(int index=startIndex;index<=endIndex;index++)
      {	 
     	 JSONObject row = new JSONObject();
     	 row.put("id", index);
