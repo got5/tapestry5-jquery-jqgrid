@@ -5,7 +5,9 @@
 <h1>Grid Demo</h1>
 
     
-    <t:jquery-jqgrid.jqgrid t:dataSource="celebritySource" t:model="Model" rowsPerPage="5"/> 
+    <t:jquery-jqgrid.jqgrid t:source="celebritySource" rowsPerPage="5" 
+        remove="id, biography, birthDateVerified"
+		reorder="lastName,firstName,occupation,dateOfBirth"/> 
     
     <t:grid t:source="celebritySource" rowsPerPage="5" row="celebrity"
 		remove="id, biography, birthDateVerified"

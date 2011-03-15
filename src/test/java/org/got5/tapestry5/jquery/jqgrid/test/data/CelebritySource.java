@@ -27,7 +27,10 @@ public class CelebritySource implements GridDataSource {
         System.out.println("Preparing selection.");
         System.out.println("Index from " + indexFrom + 
           " to " + indexTo);
-        
+        for(SortConstraint  sort :sortConstraints )
+        {
+        	System.out.println("sort "+ sort.getColumnSort().name() +" by "+ sort.getColumnSort().toString());
+        }
         selection = dataSource.getRange(indexFrom, indexTo);
         this.indexFrom = indexFrom;
     }

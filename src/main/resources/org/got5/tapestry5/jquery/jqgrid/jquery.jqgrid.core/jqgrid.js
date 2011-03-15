@@ -13,10 +13,10 @@
                	rowNum:specs.params.rowNum,
                	rowList:[5,10,15],
                	pager: $("#"+specs.params.pager),
-               	sortname: 'id',
+               	sortname: specs.params.sortname,
                 viewrecords: true,
-                sortorder: "desc",
-                caption:"Simple data manipulation",
+                sortorder: specs.params.sortorder,
+                caption:specs.params.caption,
                 editurl:specs.params.editurl
             });
             $("#" + specs.field).jqGrid('navGrid',"#"+specs.params.pager,{edit:false,add:false,del:false});

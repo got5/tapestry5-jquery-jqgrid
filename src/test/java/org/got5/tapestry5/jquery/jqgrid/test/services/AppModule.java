@@ -44,7 +44,7 @@ public class AppModule
     {
     	//if you don't use don't want to use tapestry5-jquery
     	//and if you want to use protoype and jquery provided by jqgrid
-    	configuration.add(ADD_JQUERY_IN_JQGRIDSTACK, "true");
+    	//configuration.add(ADD_JQUERY_IN_JQGRIDSTACK, "true");
     	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
         configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
         configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
