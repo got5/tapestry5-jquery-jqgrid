@@ -69,6 +69,9 @@ import org.apache.tapestry5.services.ClientBehaviorSupport;
 import org.apache.tapestry5.services.ComponentDefaultProvider;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.jqgrid.data.FilteredGridDataSource;
+import org.got5.tapestry5.jquery.jqgrid.data.SearchConstraint;
+import org.got5.tapestry5.jquery.jqgrid.data.SearchOperator;
 import org.got5.tapestry5.jquery.jqgrid.services.javascript.JQGridJavaScriptStack;
 
 @Import(stack = JQGridJavaScriptStack.STACK_ID)
@@ -81,7 +84,7 @@ public class JQGrid implements ClientElement
      * around the underlying List.
      */
     @Parameter(required = true, autoconnect = true)
-    private GridDataSource source;
+    private FilteredGridDataSource source;
 
    
     /**
@@ -172,7 +175,6 @@ public class JQGrid implements ClientElement
     @Parameter
     private boolean inPlace;
 
-   
 
     @Persist
     private Integer currentPage;
@@ -253,7 +255,18 @@ public class JQGrid implements ClientElement
      String searchString = request.getParameter(SEARCH_STRING);
      String searchOper = request.getParameter(SEARCH_OPER);
      //searchField=tax&searchString=100&searchOper=gt
-     
+    
+     if(searchField!=null)
+     {	 
+    	 SearchOperator op = SearchOperator.valueOf(searchOper);
+    	 SearchConstraint searchFor = new SearchConstraint(searchField,
+    			 										   op,
+    			 										   searchString,
+    			 										   getDataModel().get(searchField).getConduit()); 
+    	 List<SearchConstraint> lst = new ArrayList();
+    	 lst.add(searchFor);
+    	 source.setFilter(lst);
+     }
      
      String nd = request.getParameter(ND);
      
@@ -600,7 +613,7 @@ public class JQGrid implements ClientElement
          {
              // Get the default row type from the data source
 
-             GridDataSource gridDataSource = source;
+             GridDataSource gridDataSource = (GridDataSource)source;
 
              Class rowType = gridDataSource.getRowType();
 
