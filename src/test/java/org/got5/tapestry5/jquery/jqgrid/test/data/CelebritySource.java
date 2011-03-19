@@ -9,6 +9,7 @@ import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.SortConstraint;
+import org.apache.tapestry5.internal.grid.CollectionGridDataSource;
 
 import org.got5.tapestry5.jquery.jqgrid.data.FilteredGridDataSource;
 import org.got5.tapestry5.jquery.jqgrid.data.SearchConstraint;
@@ -19,85 +20,44 @@ import org.got5.tapestry5.jquery.jqgrid.test.data.Celebrity;
 public class CelebritySource implements FilteredGridDataSource {
 
 	private IDataSource dataSource;
-    private List<Celebrity> selection;
     private List<Celebrity> celebrities;
-    private int indexFrom;
+    private CollectionGridDataSource cgds;
+
   
     
     public CelebritySource(IDataSource ds) {
         this.dataSource = ds;
         this.celebrities = dataSource.getAllCelebrities();
+        this.cgds = new CollectionGridDataSource(dataSource.getAllCelebrities());
   
     }
 
     public int getAvailableRows() {
         //return dataSource.getAllCelebrities().size();
-    	return celebrities.size();
+    	//return celebrities.size();
+    	return this.cgds.getAvailableRows();
     }
 
     public void prepare(int indexFrom, int indexTo,List<SortConstraint> sortConstraints) {
         System.out.println("Preparing selection.");
         System.out.println("Index from " + indexFrom + 
           " to " + indexTo);
-        for (SortConstraint constraint : sortConstraints) {
-			final ColumnSort sort = constraint.getColumnSort();
-
-			if (sort == ColumnSort.UNSORTED)
-				continue;
-
-			final PropertyConduit conduit = constraint.getPropertyModel().getConduit();
-
-			final Comparator valueComparator = new Comparator<Comparable>() {
-				public int compare(Comparable o1, Comparable o2) {
-			
-					if (o1 == o2)
-						return 0;
-
-					if (o2 == null)
-						return 1;
-
-					if (o1 == null)
-						return -1;
-
-					return o1.compareTo(o2);
-				}
-			};
-
-			final Comparator rowComparator = new Comparator() {
-				public int compare(Object row1, Object row2) {
-					Comparable value1 = (Comparable) conduit.get(row1);
-					Comparable value2 = (Comparable) conduit.get(row2);
-
-					return valueComparator.compare(value1, value2);
-				}
-			};
-
-			final Comparator reverseComparator = new Comparator() {
-				public int compare(Object o1, Object o2) {
-					int modifier = sort == ColumnSort.ASCENDING ? 1 : -1;
-
-					return modifier * rowComparator.compare(o1, o2);
-				}
-			};
-			
-			Collections.sort(celebrities, reverseComparator);
-        }
-        selection = getRange(indexFrom, indexTo);
-        this.indexFrom = indexFrom;
+        
+        this.cgds.prepare(indexFrom, indexTo, sortConstraints);
     }
 
     public Object getRowValue(int i) {
         System.out.println("Getting value for row " + i);
-        return selection.get(i - this.indexFrom);
+        return this.cgds.getRowValue(i);
     }
 
     public Class getRowType() {
-        return Celebrity.class;
+    	return this.cgds.getRowType();
     }
     
     public void resetFilter()
     {
-    	this.celebrities = dataSource.getAllCelebrities();
+    	this.cgds = new CollectionGridDataSource(dataSource.getAllCelebrities());
     }
     
 	public void setFilter(List<SearchConstraint> searchConstraints)
@@ -112,23 +72,22 @@ public class CelebritySource implements FilteredGridDataSource {
 				
 			for (Celebrity cel:celebrities ) 
 			{
-				String val = (String)conduit.get(cel);
-				int cp = search.getPropertyValue().compareTo(val);
-				if(cp!=0 && search.getSearchOperator()==SearchOperator.eq)
-				start.remove(cel);
+				Comparable val = (Comparable)conduit.get(cel);
+				Comparable toCompare = (Comparable)search.getPropertyValue();
+				int cp = toCompare.compareTo(val);
+				
+				if((search.getSearchOperator()==SearchOperator.eq && cp!=0) || //equal 
+				   (search.getSearchOperator()==SearchOperator.lt && cp<=0)  || //less than
+				   (search.getSearchOperator()==SearchOperator.le && cp<0) || //less equal
+				   (search.getSearchOperator()==SearchOperator.gt && cp>=0)  ||
+				   (search.getSearchOperator()==SearchOperator.ge && cp>0))
+					start.remove(cel);
 			}
 		}
 		
-		this.celebrities = start;
+		this.cgds = new CollectionGridDataSource(start);
 		
 		
 	}
 	
-	public List<Celebrity> getRange(int indexFrom, int indexTo) {
-		List<Celebrity> result = new ArrayList<Celebrity>();
-		for (int i = indexFrom; i <= indexTo; i++) {
-			result.add(celebrities.get(i));
-		}
-		return result;
-	}
 }

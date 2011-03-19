@@ -13,14 +13,14 @@ public class SearchConstraint {
 	
 	private String propertyName;
 	private SearchOperator  searchOperator;
-	private String propertyValue;
+	private Object propertyValue;
 	private PropertyConduit conduit;
 	
 	
 	
 	public SearchConstraint(String propertyName, 
 							SearchOperator searchOperator,
-							String propertyValue,
+							Object propertyValue,
 							PropertyConduit conduit) {
 		this.propertyName = propertyName;
 		this.searchOperator = searchOperator;
@@ -39,10 +39,10 @@ public class SearchConstraint {
 	public void setSearchOperator(SearchOperator searchOperator) {
 		this.searchOperator = searchOperator;
 	}
-	public String getPropertyValue() {
+	public Object getPropertyValue() {
 		return propertyValue;
 	}
-	public void setPropertyValue(String propertyValue) {
+	public void setPropertyValue(Object propertyValue) {
 		this.propertyValue = propertyValue;
 	}
 	public PropertyConduit getConduit() {

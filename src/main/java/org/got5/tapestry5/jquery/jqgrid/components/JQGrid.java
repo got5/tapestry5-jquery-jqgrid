@@ -39,9 +39,11 @@ import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.FieldValidationSupport;
 import org.apache.tapestry5.FieldValidator;
 import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.ValidationTracker;
+import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
 import org.apache.tapestry5.annotations.Import;
@@ -51,6 +53,7 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.beaneditor.PropertyModel;
+import org.apache.tapestry5.corelib.base.BaseMessages;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
 import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
@@ -62,12 +65,16 @@ import org.apache.tapestry5.internal.bindings.AbstractBinding;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.BeanBlockSource;
 import org.apache.tapestry5.services.BeanModelSource;
 import org.apache.tapestry5.services.ClientBehaviorSupport;
 import org.apache.tapestry5.services.ComponentDefaultProvider;
+import org.apache.tapestry5.services.Core;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.ValueEncoderSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.got5.tapestry5.jquery.jqgrid.data.FilteredGridDataSource;
 import org.got5.tapestry5.jquery.jqgrid.data.SearchConstraint;
@@ -166,6 +173,17 @@ public class JQGrid implements ClientElement
     private String reorder;
 
 
+    @Inject
+    private ValueEncoderSource encoderSource;
+
+   
+    /**
+     * The current value, set before the component renders its body.
+     */
+    @SuppressWarnings("unused")
+    @Parameter
+    private Object value;
+    
     /**
      * If true, then the Grid will be wrapped in an element that acts like a
      * {@link org.apache.tapestry5.corelib.components.Zone}; all the paging and sorting links will refresh the zone,
@@ -190,10 +208,19 @@ public class JQGrid implements ClientElement
 
     @Inject
     private BeanModelSource modelSource;
+    
+    @Inject
+    @Core
+    private BeanBlockSource defaultBeanBlockSource;
+    
+    @Inject
+    private TypeCoercer typeCoercer;
 
     @Environmental
     private ClientBehaviorSupport clientBehaviorSupport;
  
+
+    
 	 /**
 	* Request attribute set to true if localization for the client-side jqgrid has been
 	* configured. Used to ensure
@@ -227,7 +254,7 @@ public class JQGrid implements ClientElement
  
 	 private static final String PAGE = "page";
 	
-	 private static final String SEARCH = "search";
+	 private static final String SEARCH = "_search";
 	 private static final String SEARCH_FIELD = "searchField";
 	 private static final String SEARCH_STRING = "searchString";
 	 private static final String SEARCH_OPER = "searchOper";
@@ -256,12 +283,17 @@ public class JQGrid implements ClientElement
      String searchOper = request.getParameter(SEARCH_OPER);
      //searchField=tax&searchString=100&searchOper=gt
     
-     if(searchField!=null)
+     
+     if(search.equals("false"))
+    	 source.resetFilter();	  
+     else if(searchField!=null && searchOper!=null && searchString!=null)
      {	 
     	 SearchOperator op = SearchOperator.valueOf(searchOper);
+    	 Class searchType = getDataModel().get(searchField).getConduit().getPropertyType();
+    	 Object searchValue = typeCoercer.coerce(searchString,searchType);
     	 SearchConstraint searchFor = new SearchConstraint(searchField,
     			 										   op,
-    			 										   searchString,
+    			 										   searchValue,
     			 										   getDataModel().get(searchField).getConduit()); 
     	 List<SearchConstraint> lst = new ArrayList();
     	 lst.add(searchFor);
@@ -318,41 +350,39 @@ public class JQGrid implements ClientElement
     	 for (String name: names)
     	 {
     		 
+    		 PropertyConduit conduit = getDataModel().get(name).getConduit();
+    		 Class type = conduit.getPropertyType();
+    		 //Block displayBlock = defaultBeanBlockSource.getDisplayBlock(getDataModel().get(name).getDataType());
+    		 
     		 try
-    		 {	
-    			 Class c = obj.getClass();
-    			 Field[] fs = c.getFields();
-    			 Method[] ms = c.getMethods();
-    			 boolean found = false;
-    			 for(Method m : ms)
-    			 {
-    				 if(m.getName().equalsIgnoreCase("get"+name))
-    				 {
-    					 //todo parse date
-    					 cell.put(m.invoke(obj).toString());
-    					 found = true;
-    					 break;
-    				 }
-    			 }	 
-    			 if(!found)
-    			 {
-    				 for(Field f : fs)
-        			 {
-        				 if(f.getName().equalsIgnoreCase(name))
-        				 {
-        					 cell.put(f.get(obj));
-        					 found = true;
-        					 break;
-        				 }
-        			 }	 
-    			 }
-    			 if(!found) cell.put("undefined "+name);
-    			
-    		 }
-    		 catch(Exception ex)
-    		 {
-    			 cell.put("exception for "+name);
-    		 }
+    	        {
+    			 	String cellValue;
+    			 	Object val = conduit.get(obj);
+    			 	//todo use BeanBlockSource or ...
+    			 	if(type.equals(Date.class)) 
+    			 	{
+    			 		//mimic PropertyDisplayBlock
+    			 		Date cellDate = (Date)val;
+    			 		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+    			 		cellValue = dateFormat.format(cellDate) ;
+    			 	}else if (type.equals(Enum.class))
+    			 	{
+    			 		cellValue = TapestryInternalUtils.getLabelForEnum(overrides.getOverrideMessages(), (Enum)val);
+    			 	}else
+    			 	{
+    			 		if(val==null) cellValue = "undefined "+name;
+    			 		else
+    			 			cellValue = typeCoercer.coerce(val, String.class);
+    			 		//ValueEncoder valueEncoder =encoderSource.getValueEncoder(type);
+    			 		//cellValue = valueEncoder.toClient(val);
+    			 	}
+    	            cell.put(cellValue);
+    	        }
+    	        catch (NullPointerException ex)
+    	        {
+    	        	cell.put("undefined "+name);
+    	        }
+    		 
     	 }
     	 row.put("cell",cell);
     	 rows.put(row);
