@@ -6,11 +6,11 @@
 
     
     <t:jquery-jqgrid.jqgrid t:source="celebritySource" rowsPerPage="5" 
-        remove="id, biography, birthDateVerified"
+        exclude="id, biography, birthDateVerified"
 		reorder="lastName,firstName,occupation,dateOfBirth"/> 
     
     <t:grid t:source="celebritySource" rowsPerPage="5" row="celebrity"
-		remove="id, biography, birthDateVerified"
+		exclude="id, biography, birthDateVerified"
 		reorder="lastName,firstName,occupation,dateOfBirth">
 	</t:grid>
     

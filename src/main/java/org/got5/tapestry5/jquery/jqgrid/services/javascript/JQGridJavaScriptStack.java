@@ -100,7 +100,7 @@ public class JQGridJavaScriptStack implements JavaScriptStack {
                      	  	).map(pathToAsset).toList();
 
 
-        if (!productionMode) {
+        if (productionMode) {
         	
         	stylesheetStack = F.flow("${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/css/ui.jqgrid.css")
         	.map(pathToStylesheetLink).toList();
