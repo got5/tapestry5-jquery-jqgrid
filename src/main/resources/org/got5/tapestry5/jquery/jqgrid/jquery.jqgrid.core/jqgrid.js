@@ -17,7 +17,8 @@
                 viewrecords: true,
                 sortorder: specs.params.sortorder,
                 caption:specs.params.caption,
-                editurl:specs.params.editurl
+                editurl:specs.params.editurl, 
+                rownumbers:specs.params.rownumbers
             });
             $("#" + specs.field).jqGrid('navGrid',"#"+specs.params.pager,{edit:false,add:false,del:false});
         }
