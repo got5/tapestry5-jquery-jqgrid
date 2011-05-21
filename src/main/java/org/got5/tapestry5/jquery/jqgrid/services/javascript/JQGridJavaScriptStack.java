@@ -134,7 +134,7 @@ public class JQGridJavaScriptStack implements JavaScriptStack {
                 	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.loader.js", //jqGrid loader
                 	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.postext.js", 
                 	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.setcolumns.js",
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/jqDnr.js",   
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/jqDnR.js",   
                 	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/jqModal.js", 
                 	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/ui.multiselect.js",
                 	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/jquery.searchFilter.js",   
