@@ -30,7 +30,10 @@ import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.corelib.components.Grid;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONLiteral;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.BeanModelSource;
+import org.eclipse.jetty.util.ajax.JSON;
 import org.got5.tapestry5.jquery.jqgrid.test.data.Celebrity;
 import org.got5.tapestry5.jquery.jqgrid.test.data.CelebritySource;
 import org.got5.tapestry5.jquery.jqgrid.test.data.IDataSource;
@@ -92,6 +95,27 @@ public class Index
 	public BeanModel getModel() {
 		this.model = beanModelSource.createDisplayModel(Celebrity.class,resources.getMessages());
 		return model;
+	}
+	
+	public JSONObject getAdditionalParams(){
+		
+		JSONObject ap = new JSONObject();
+		
+		ap.put("rownumbers", true);
+		ap.put("grouping", true);
+		
+		
+		JSONObject grouping = new JSONObject();
+		grouping.put("groupField",new JSONLiteral("['occupation']"));
+		grouping.put("groupColumnShow",new JSONLiteral("[false]"));
+		grouping.put("groupText",new JSONLiteral("['<b>{0} - {1} Item(s)</b>']"));
+		grouping.put("groupCollapse",true);
+		grouping.put("groupOrder",new JSONLiteral("['desc']"));
+		grouping.put("groupSummary",new JSONLiteral("[true]"));
+		ap.put("groupingView", grouping);
+				
+		return ap;
+		
 	}
 	
 }

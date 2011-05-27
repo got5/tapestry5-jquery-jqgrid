@@ -52,6 +52,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.BeanBlockSource;
 import org.apache.tapestry5.services.BeanModelSource;
@@ -65,6 +66,7 @@ import org.got5.tapestry5.jquery.jqgrid.data.FilteredGridDataSource;
 import org.got5.tapestry5.jquery.jqgrid.data.SearchConstraint;
 import org.got5.tapestry5.jquery.jqgrid.data.SearchOperator;
 import org.got5.tapestry5.jquery.jqgrid.services.javascript.JQGridJavaScriptStack;
+import org.got5.tapestry5.jquery.utils.JQueryUtils;
 
 @Import(stack = JQGridJavaScriptStack.STACK_ID)
 @Events("Data")
@@ -157,11 +159,9 @@ public class JQGrid implements ClientElement
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
     private String reorder;
     
-    /**
-     * A Boolean value indicating if jqGrid has to display the line number
-     */
-    @Parameter(defaultPrefix = BindingConstants.LITERAL)
-    private boolean rownumbers;
+    
+    @Parameter(defaultPrefix = BindingConstants.PROP)
+    private JSONObject additionalParams;
     
     
     @Inject
@@ -456,6 +456,7 @@ public class JQGrid implements ClientElement
      {
     	 JSONObject model = new JSONObject();
     	 model.put("name", name);
+    	 
     	 model.put("index", name);
     	 model.put("width", 100);
     	 colModel.put(model);
@@ -481,9 +482,7 @@ public class JQGrid implements ClientElement
      //rowList:[10,20,30],
      
      //pager: '#pager5',
-     jqgridParams.put("pager","pager"+clientId);
-     
-     jqgridParams.put("rownumbers", rownumbers);
+     jqgridParams.put("pager","#pager"+clientId);
      
      //viewrecords: true,
      
@@ -492,6 +491,11 @@ public class JQGrid implements ClientElement
    
      //editurl:"someurl.php" 
      jqgridParams.put("editurl", resources.createEventLink("edit").toAbsoluteURI());
+     
+     jqgridParams.put("sortable", true).put("viewrecords", true).put("rowList", new JSONLiteral("[5,10,15]"));
+     
+     JQueryUtils.merge(jqgridParams, additionalParams);
+     
      setup.put("params",jqgridParams);
     
      if (request.getAttribute(LOCALIZATION_CONFIGURED_FLAG) == null)

@@ -1,4 +1,4 @@
-<html t:type="layout" t:pageTitle="test it!"
+<html t:type="LayoutWithAccordion" t:pageTitle="test it!"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
       xmlns:p="tapestry:parameter">
       
@@ -7,7 +7,7 @@
     
     <t:jquery-jqgrid.jqgrid t:source="celebritySource" rowsPerPage="5" 
         exclude="id, biography, birthDateVerified"
-		reorder="lastName,firstName,occupation,dateOfBirth" t:rownumbers="true"/> 
+		reorder="lastName,firstName,occupation,dateOfBirth" t:additionalParams="additionalParams"/> 
     
     <t:grid t:source="celebritySource" rowsPerPage="5" row="celebrity"
 		exclude="id, biography, birthDateVerified"

@@ -1,0 +1,18 @@
+<html t:type="LayoutWithAccordion" t:activeElement="0"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
+      xmlns:p="tapestry:parameter">
+     
+<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
+        t:exclude="id, biography, birthDateVerified"
+		t:reorder="lastName,firstName,occupation,dateOfBirth" 
+		t:additionalParams="additionalParams"
+		t:id="jqGrid"/>
+
+<div t:type="jquery/showSource" t:path="src/test/resources/org/got5/tapestry5/jquery/jqgrid/test/pages/BASIC_ColumnChooser.tml" 
+	 t:beginLine="5" t:endLine="9"></div>
+	 
+<div t:type="jquery/showSource" t:path="src/test/java/org/got5/tapestry5/jquery/jqgrid/test/pages/BASIC_ColumnChooser.java" 
+	 t:beginLine="30" t:endLine="74"></div>
+
+<div t:type="jquery/showSource" t:path="src/test/jquery/jqgrid/webapp/static/js/demo.js" t:beginLine="1" t:endLine="14"></div>
+</html>

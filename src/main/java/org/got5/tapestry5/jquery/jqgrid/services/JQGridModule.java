@@ -54,7 +54,7 @@ public class JQGridModule
     {
        
         configuration.add(JQUERY_JQGRID_CORE_PATH, "classpath:org/got5/tapestry5/jquery/jqgrid/jquery.jqgrid.core");
-        configuration.add(JQUERY_JQGRID_VERSION, "3.8.2");
+        configuration.add(JQUERY_JQGRID_VERSION, "4.0.0");
         configuration.add(ADD_JQUERY_IN_JQGRIDSTACK, "false");
       
     }

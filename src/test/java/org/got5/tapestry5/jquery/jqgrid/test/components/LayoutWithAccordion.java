@@ -1,5 +1,5 @@
 //
-// Copyright 2010 GOT5 (Gang Of Tapestry 5)
+// Copyright 2010 GOT5 (GO Tapestry 5)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,15 +16,24 @@
 
 package org.got5.tapestry5.jquery.jqgrid.test.components;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.got5.tapestry5.jquery.utils.JQueryAccordionData;
 
-@Import(stylesheet ={ "context:css/layout/style.css"})
-public class Layout
+@Import(stylesheet =
+{ "context:css/layout/style.css" ,"context:css/demoSite.css"}
+)
+public class LayoutWithAccordion 
 {
     @Property
     private String title;
@@ -32,9 +41,24 @@ public class Layout
     @Inject
     private ComponentResources resources;
 
-    @SetupRender
-    void init()
-    {
-        this.title = resources.getPageName();
-    }
+    @SuppressWarnings("unused")
+    @Property
+    @Parameter
+	private int activeElement;
+
+
+	@Property
+	private List<JQueryAccordionData> list;
+
+	@SetupRender
+	void onSetupRender()
+	{
+		title = resources.getPageName();
+				
+		list = new ArrayList<JQueryAccordionData>();
+        list.add(new JQueryAccordionData("Basic Samples","basic"));
+        list.add(new JQueryAccordionData("Grouping Samples","grouping"));
+        
+        
+	}
 }

@@ -49,6 +49,7 @@ public class AppModule
         configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
         configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
+        configuration.add("demo-src-dir","");
     }
     
     public void contributeApplicationStateManager(
