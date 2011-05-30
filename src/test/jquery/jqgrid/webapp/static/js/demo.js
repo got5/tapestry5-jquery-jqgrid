@@ -2,7 +2,7 @@ function columnChooserClosure(id,pager){
 	
 	var columnChooser = function(){ 
 		jQuery("#"+id).jqGrid('navButtonAdd',pager,{
-			caption: "Columns",
+			caption: "",
 			title: "Reorder Columns",
 			onClickButton: function(){
 				jQuery("#"+id).jqGrid('columnChooser');

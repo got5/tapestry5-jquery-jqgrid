@@ -16,8 +16,6 @@
 
 package org.got5.tapestry5.jquery.jqgrid.test.services;
 
-import static org.got5.tapestry5.jquery.jqgrid.JQGridSymbolConstants.ADD_JQUERY_IN_JQGRIDSTACK;
-
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +26,11 @@ import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
 import org.apache.tapestry5.services.ApplicationStateContribution;
 import org.apache.tapestry5.services.ApplicationStateCreator;
+import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.got5.tapestry5.jquery.jqgrid.services.JQGridModule;
 import org.got5.tapestry5.jquery.jqgrid.test.data.IDataSource;
 import org.got5.tapestry5.jquery.jqgrid.test.data.MockDataSource;
 import org.got5.tapestry5.jquery.jqgrid.test.data.Track;
-import org.got5.tapestry5.jquery.jqgrid.test.services.MusicLibraryParser;
 import org.slf4j.Logger;
 
 
@@ -49,6 +47,7 @@ public class AppModule
         configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
         configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
+        configuration.add(JQuerySymbolConstants.JQUERY_VERSION, "1.5.2");
         configuration.add("demo-src-dir","");
     }
     
