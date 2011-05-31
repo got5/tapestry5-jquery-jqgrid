@@ -8,10 +8,12 @@
 		t:additionalParams="additionalParams"
 		t:id="jqGrid"/>
  
-<div t:type="jquery/showSource" t:path="src/test/resources/org/got5/tapestry5/jquery/jqgrid/test/pages/BASIC_ColumnReordering.tml" 
+<div t:type="jquery/showSource" t:path="src/test/resources/org/got5/tapestry5/jquery/jqgrid/test/pages/BASIC_ColumnChooser.tml" 
 	 t:beginLine="5" t:endLine="9"></div>
 	 
-<div t:type="jquery/showSource" t:path="src/test/java/org/got5/tapestry5/jquery/jqgrid/test/pages/BASIC_ColumnReordering.java" 
-	 t:beginLine="28" t:endLine="55"></div>
+<div t:type="jquery/showSource" t:path="src/test/java/org/got5/tapestry5/jquery/jqgrid/test/pages/BASIC_ColumnChooser.java" 
+	 t:beginLine="30" t:endLine="74"></div>
+
+<div t:type="jquery/showSource" t:path="src/test/jquery/jqgrid/webapp/static/js/demo.js" t:beginLine="1" t:endLine="14"></div>
 
 </html>

@@ -66,6 +66,9 @@
 	        		<li>
 	            		<t:pagelink t:page="BASIC_ColumnChooser">Column Chooser</t:pagelink>
 	        		</li>
+	        		<li>
+	            		<t:pagelink t:page="BASIC_ColumnReordering">Column Reordering</t:pagelink>
+	        		</li>
 	        	</ul>
 			</t:block>
 		
