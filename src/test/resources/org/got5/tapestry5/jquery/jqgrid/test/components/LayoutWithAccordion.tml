@@ -8,13 +8,13 @@
 	<div class="wrapper bs">
 		<ul class="nav">
 				<li>
-					<t:pagelink t:page="index">home</t:pagelink>
+					<t:pagelink t:page="index">Home</t:pagelink>
 				</li>
 				<li>
 					<a href="https://github.com/got5/tapestry5-jquery">Download</a>		
 				</li>
 				<li class="last">
-					<a href="http://twitter.com/#!/GOTapestry5">TWITTER</a>
+					<a href="http://twitter.com/#!/GOTapestry5">Twitter</a>
 				</li>
 			
 		</ul>
@@ -23,7 +23,7 @@
 
 			<h1><img src="${context:/css/layout/tapestry.png}" alt="Tapestry" id="tapestry" /></h1>
 			<div id="aside">
-				Tapestry 5jQuery provide jQuery Components and can fully replace Prototype and Scriptaculous by jQuery
+				Tapestry5 jQuery provide jQuery Components and can fully replace Prototype and Scriptaculous by jQuery
 			</div>
 			<div class="clearer"></div>
 
@@ -37,7 +37,7 @@
 		<div id="menu">
 			<t:jquery.accordion  t:listOfElements="prop:list" t:activeElementId="activeElement" />
 				
-			<t:block id="grouping">
+			<t:block id="block1">
 			<!-- Core Components and features -->
 			<ul>
         		<li>
@@ -61,13 +61,13 @@
         	</ul>
 			</t:block>
 			
-			<t:block id="basic">
+			<t:block id="block2">
 				<ul>
-	        		<li>
-	            		<t:pagelink t:page="BASIC_ColumnChooser">Column Chooser</t:pagelink>
+					<li>
+	            		<t:pagelink t:page="BASIC_ColumnReordering">Column Reordering</t:pagelink>
 	        		</li>
 	        		<li>
-	            		<t:pagelink t:page="BASIC_ColumnReordering">Column Reordering</t:pagelink>
+	            		<t:pagelink t:page="BASIC_ColumnChooser">Column Chooser</t:pagelink>
 	        		</li>
 	        	</ul>
 			</t:block>

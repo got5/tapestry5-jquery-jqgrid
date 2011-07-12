@@ -56,9 +56,9 @@ public class LayoutWithAccordion
 		title = resources.getPageName();
 				
 		list = new ArrayList<JQueryAccordionData>();
-        list.add(new JQueryAccordionData("Basic Samples","basic"));
-        list.add(new JQueryAccordionData("Grouping Samples","grouping"));
         
+        list.add(new JQueryAccordionData("New in version 3.6","block2"));
+        list.add(new JQueryAccordionData("Grouping","block1"));
         
 	}
 }

@@ -1,17 +1,26 @@
-<html t:type="LayoutWithAccordion" t:pageTitle="test it!"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
-      xmlns:p="tapestry:parameter">
-      
-<h1>Grid Demo</h1>
+<html t:type="layoutWithAccordion" t:title="Tapestry5 JQuery" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+    
+    
+    <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+	<t:block id="block4">
+		This project will allow you to use the jQuery jqGrid plugin instead of the Tapestry Grid Component. 
+		<br/><br/>
+		In this Web Site, we have implemented a lot of examples, coming from the official demo web site.  (http://www.trirand.com/blog/jqgrid/jqgrid.html)
+		<br/>
+		<br/>
+		Feel free to create your own samples, and we will add them to this project.
+		<br/>
+		<br/>
+		## List Of Contributors<br/>
+		- Francois Facon as got5     	<br/>
+		- Emmanuel DEMEY as Gillespie59	<br/>
+		
 
-    
-    <t:jquery-jqgrid.jqgrid t:source="celebritySource" rowsPerPage="5" 
-        exclude="id, biography, birthDateVerified"
-		reorder="lastName,firstName,occupation,dateOfBirth" t:additionalParams="additionalParams"/> 
-    
-    <t:grid t:source="celebritySource" rowsPerPage="5" row="celebrity"
-		exclude="id, biography, birthDateVerified"
-		reorder="lastName,firstName,occupation,dateOfBirth">
-	</t:grid>
+		<br/><br/>
+		## Changelog<br/>
+		
+		- 1.0-SNAPSHOT : initial releases					<br/>
+	</t:block>
+   
     
 </html>

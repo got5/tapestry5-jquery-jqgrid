@@ -16,21 +16,29 @@
 
 package org.got5.tapestry5.jquery.jqgrid.test.pages;
 
-import org.apache.tapestry5.annotations.AfterRender;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 @Import(library = { "context:static/js/demo.js"})
 public class GROUPING_ChangeGrouping extends Basic_Sample
 {
 	
-	@Inject 
-	private JavaScriptSupport js;
-	
+	@Property
+	private List<JQueryTabData> listTabData;
 
+	@SetupRender
+	void onSetupRender()
+	{
+		listTabData = new ArrayList<JQueryTabData>();
+	    listTabData.add(new JQueryTabData("Example","example"));
+	}
 	
 	public JSONObject getAdditionalParams(){
 		

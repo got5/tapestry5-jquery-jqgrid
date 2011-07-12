@@ -41,16 +41,19 @@ public class AppModule
 {
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
     {
-    	//if you don't use don't want to use tapestry5-jquery
-    	//and if you want to use protoype and jquery provided by jqgrid
-    	//configuration.add(ADD_JQUERY_IN_JQGRIDSTACK, "true");
     	configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-        configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
-        configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
-        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
-        configuration.add(JQuerySymbolConstants.JQUERY_VERSION, JQueryVersion.v1_5_2);
-        configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
-        configuration.add("demo-src-dir","");
+
+    	configuration.add(SymbolConstants.COMBINE_SCRIPTS, "false");
+        
+    	configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
+        
+    	configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
+        
+    	configuration.add(JQuerySymbolConstants.JQUERY_VERSION, JQueryVersion.v1_5_2);
+        
+    	configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
+        
+    	configuration.add("demo-src-dir","");
     }
     
     public void contributeApplicationStateManager(

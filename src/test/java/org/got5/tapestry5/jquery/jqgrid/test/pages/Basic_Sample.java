@@ -3,7 +3,6 @@ package org.got5.tapestry5.jquery.jqgrid.test.pages;
 import java.util.List;
 
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.grid.GridDataSource;
@@ -30,7 +29,6 @@ public class Basic_Sample {
 	}
 
 	public List<Celebrity> getAllCelebrities() {
-		System.out.println("Getting all celebrities...");
 		return dataSource.getAllCelebrities();
 	}
 

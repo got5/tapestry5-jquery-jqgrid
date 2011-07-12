@@ -39,15 +39,10 @@ public class CelebritySource implements FilteredGridDataSource {
     }
 
     public void prepare(int indexFrom, int indexTo,List<SortConstraint> sortConstraints) {
-        System.out.println("Preparing selection.");
-        System.out.println("Index from " + indexFrom + 
-          " to " + indexTo);
-        
         this.cgds.prepare(indexFrom, indexTo, sortConstraints);
     }
 
     public Object getRowValue(int i) {
-        System.out.println("Getting value for row " + i);
         return this.cgds.getRowValue(i);
     }
 

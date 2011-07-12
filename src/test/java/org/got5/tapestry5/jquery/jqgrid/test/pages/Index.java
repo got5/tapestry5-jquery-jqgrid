@@ -16,106 +16,34 @@
 
 package org.got5.tapestry5.jquery.jqgrid.test.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.ApplicationState;
-import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.beaneditor.BeanModel;
-import org.apache.tapestry5.corelib.components.Grid;
-import org.apache.tapestry5.grid.GridDataSource;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONLiteral;
-import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.BeanModelSource;
-import org.eclipse.jetty.util.ajax.JSON;
-import org.got5.tapestry5.jquery.jqgrid.test.data.Celebrity;
-import org.got5.tapestry5.jquery.jqgrid.test.data.CelebritySource;
-import org.got5.tapestry5.jquery.jqgrid.test.data.IDataSource;
-import org.got5.tapestry5.jquery.jqgrid.test.data.MockDataSource;
-import org.got5.tapestry5.jquery.jqgrid.test.data.MusicLibraryDataSource;
-import org.got5.tapestry5.jquery.jqgrid.test.data.Track;
-import org.got5.tapestry5.jquery.jqgrid.test.services.MusicLibrary;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 @Import(stylesheet = { "context:jquery-ui-1.7.3/jquery-ui-1.7.3.custom.css"})
 public class Index
 {
-	@SessionState
-	private IDataSource dataSource;
+	@Persist
+	@Property
+	private String activePanel;
+
 	
-	/*@Persist
-	private IDataSource dataSource;
+	@Property
+	private List<JQueryTabData> listTabData;
+
 	
 	@SetupRender
-	void onInit()
+	void onSetupRender()
 	{
-		dataSource = new MockDataSource();
-	}*/
-	
-	
-	private Celebrity celebrity;
-	private CelebritySource celebritySource;
-
-	
-	public GridDataSource getCelebritySource() {
-		if(celebritySource==null)
-			celebritySource = new CelebritySource(dataSource);
-		return celebritySource;
-	}
-
-	public List<Celebrity> getAllCelebrities() {
-		System.out.println("Getting all celebrities...");
-		return dataSource.getAllCelebrities();
-	}
-
-	public Celebrity getCelebrity() {
-		return celebrity;
-	}
-	
-	public void setCelebrity(Celebrity celebrity) {
-		this.celebrity = celebrity;
-	}
-	
-	@Inject
-	private ComponentResources resources;
-
-	
-	@Inject
-	private BeanModelSource beanModelSource;
-	
-	@SuppressWarnings("unchecked")
-	private BeanModel model;
-	
-	@SuppressWarnings("unchecked")
-	public BeanModel getModel() {
-		this.model = beanModelSource.createDisplayModel(Celebrity.class,resources.getMessages());
-		return model;
-	}
-	
-	public JSONObject getAdditionalParams(){
-		
-		JSONObject ap = new JSONObject();
-		
-		ap.put("rownumbers", true);
-		ap.put("grouping", true);
-		
-		
-		JSONObject grouping = new JSONObject();
-		grouping.put("groupField",new JSONLiteral("['occupation']"));
-		grouping.put("groupColumnShow",new JSONLiteral("[false]"));
-		grouping.put("groupText",new JSONLiteral("['<b>{0} - {1} Item(s)</b>']"));
-		grouping.put("groupCollapse",true);
-		grouping.put("groupOrder",new JSONLiteral("['desc']"));
-		grouping.put("groupSummary",new JSONLiteral("[true]"));
-		ap.put("groupingView", grouping);
 				
-		return ap;
-		
+		listTabData = new ArrayList<JQueryTabData>();
+        listTabData.add(new JQueryTabData("About","block4"));
+        
 	}
 	
 }

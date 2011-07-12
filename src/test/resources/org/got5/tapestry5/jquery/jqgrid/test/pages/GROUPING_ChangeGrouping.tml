@@ -2,22 +2,20 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" 
       xmlns:p="tapestry:parameter">
      
-Group By: <select id="chngroup">
-	<option value="lastName">Last Name</option>
-	<option value="firstName">First Name</option>
-	<option value="occupation">Occupation</option>	
-</select>
+	<t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
+	<t:block id="example">
+		<p>
+			We can change dynamically the grouping column.
+		</p><br/>
+		Group By: <select id="chngroup">
+			<option value="lastName">Last Name</option>
+			<option value="firstName">First Name</option>
+			<option value="occupation">Occupation</option>	
+		</select>
 
-<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
-        t:exclude="id, biography, birthDateVerified"
-		t:reorder="lastName,firstName,occupation,dateOfBirth" 
-		t:additionalParams="additionalParams"/>
-
-<div t:type="jquery/showSource" t:path="src/test/resources/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_ChangeGrouping.tml" 
-	 t:beginLine="4" t:endLine="14"></div>
-	 
-<div t:type="jquery/showSource" t:path="src/test/java/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_ChangeGrouping.java" 
-	 t:beginLine="26" t:endLine="65"></div>
-
-<div t:type="jquery/showSource" t:path="src/test/jquery/jqgrid/webapp/static/js/demo.js" t:beginLine="16" t:endLine="32"></div>
+		<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
+		        t:exclude="id, biography, birthDateVerified"
+				t:reorder="lastName,firstName,occupation,dateOfBirth" 
+				t:additionalParams="additionalParams"/>
+	</t:block>
 </html>

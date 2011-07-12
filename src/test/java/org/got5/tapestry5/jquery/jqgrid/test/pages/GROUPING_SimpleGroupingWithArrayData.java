@@ -16,13 +16,28 @@
 
 package org.got5.tapestry5.jquery.jqgrid.test.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.json.JSONLiteral;
 import org.apache.tapestry5.json.JSONObject;
+import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 @Import(stylesheet = { "context:jquery-ui-1.7.3/jquery-ui-1.7.3.custom.css"})
 public class GROUPING_SimpleGroupingWithArrayData extends Basic_Sample
 {
+	@Property
+	private List<JQueryTabData> listTabData;
+
+	@SetupRender
+	void onSetupRender()
+	{
+		listTabData = new ArrayList<JQueryTabData>();
+	    listTabData.add(new JQueryTabData("Example","example"));
+	}
 	
 	public JSONObject getAdditionalParams(){
 		

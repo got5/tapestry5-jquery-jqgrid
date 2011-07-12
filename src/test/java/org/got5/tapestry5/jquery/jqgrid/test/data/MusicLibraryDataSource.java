@@ -1,11 +1,7 @@
 package org.got5.tapestry5.jquery.jqgrid.test.data;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import org.apache.tapestry5.PropertyConduit;
-import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.SortConstraint;
 import org.got5.tapestry5.jquery.jqgrid.test.services.MusicLibrary;
