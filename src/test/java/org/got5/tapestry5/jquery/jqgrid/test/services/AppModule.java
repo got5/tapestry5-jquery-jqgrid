@@ -49,6 +49,7 @@ public class AppModule
         configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,de");
         configuration.add(JQuerySymbolConstants.JQUERY_VERSION, JQueryVersion.v1_5_2);
+        configuration.add(JQuerySymbolConstants.JQUERY_UI_DEFAULT_THEME, "context:css/south-street/jquery-ui.css");
         configuration.add("demo-src-dir","");
     }
     
