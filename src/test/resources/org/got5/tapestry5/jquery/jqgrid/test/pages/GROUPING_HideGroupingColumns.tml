@@ -8,9 +8,12 @@
 			We can tell to the grid to hide automatically the grouping column. 
 			We just have to use the groupColumnShow option. 
 		</p>
-			<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
-			        t:exclude="id, biography, birthDateVerified"
-					t:reorder="lastName,firstName,occupation,dateOfBirth" 
-					t:additionalParams="additionalParams"/>
+<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
+	t:exclude="id, biography, birthDateVerified"
+	t:reorder="lastName,firstName,occupation,dateOfBirth" 
+	t:additionalParams="additionalParams"/>
+	
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="11" t:endLine="14" t:path="src/test/resources/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_HideGroupingColumns.tml"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_HideGroupingColumns.java"></div>
 		</t:block>
 </html>

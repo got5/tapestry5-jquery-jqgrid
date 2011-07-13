@@ -7,9 +7,12 @@
 		<p>
 			We can hide by default all the data when they are loaded.
 		</p>
-		<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
-		        t:exclude="id, biography, birthDateVerified"
-				t:reorder="lastName,firstName,occupation,dateOfBirth" 
-				t:additionalParams="additionalParams"/>
+<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
+	t:exclude="id, biography, birthDateVerified"
+	t:reorder="lastName,firstName,occupation,dateOfBirth" 
+	t:additionalParams="additionalParams"/>
+		
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="10" t:endLine="13" t:path="src/test/resources/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_GroupingRowsCollapsed.tml"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_GroupingRowsCollapsed.java"></div>
 	</t:block>
 </html>

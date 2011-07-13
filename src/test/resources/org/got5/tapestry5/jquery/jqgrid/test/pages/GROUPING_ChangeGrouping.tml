@@ -7,15 +7,21 @@
 		<p>
 			We can change dynamically the grouping column.
 		</p><br/>
-		Group By: <select id="chngroup">
-			<option value="lastName">Last Name</option>
-			<option value="firstName">First Name</option>
-			<option value="occupation">Occupation</option>	
-		</select>
+Group By: <select id="chngroup">
+	<option value=""></option>
+	<option value="lastName">Last Name</option>
+	<option value="firstName">First Name</option>
+	<option value="occupation">Occupation</option>
+	<option value="clear">No Group !!</option>	
+</select>
 
-		<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
-		        t:exclude="id, biography, birthDateVerified"
-				t:reorder="lastName,firstName,occupation,dateOfBirth" 
-				t:additionalParams="additionalParams"/>
+<t:jquery-jqgrid.jqgrid t:source="celebritySource" t:rowsPerPage="5" 
+	t:exclude="id, biography, birthDateVerified"
+	t:reorder="lastName,firstName,occupation,dateOfBirth" 
+	t:additionalParams="additionalParams"/>
+				
+		<div t:type="jquery/showSource" t:ext="html" t:beginLine="10" t:endLine="21" t:path="src/test/resources/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_ChangeGrouping.tml"></div>
+		<div t:type="jquery/showSource" t:ext="javascript" t:beginLine="16" t:endLine="32" t:path="src/test/jquery/jqgrid/webapp/static/js/demo.js"></div>
+		<div t:type="jquery/showSource" t:ext="java" t:path="src/test/java/org/got5/tapestry5/jquery/jqgrid/test/pages/GROUPING_ChangeGrouping.java"></div>
 	</t:block>
 </html>

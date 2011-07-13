@@ -28,7 +28,6 @@ import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
 @ImportJQueryUI(value={"jquery.ui.mouse", "jquery.ui.sortable"})
-@Import(library = { "context:static/js/demo.js"})
 public class BASIC_ColumnReordering extends Basic_Sample
 {
 	@Property
