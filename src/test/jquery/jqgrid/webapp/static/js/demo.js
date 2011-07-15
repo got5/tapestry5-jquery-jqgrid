@@ -43,3 +43,21 @@ function hideShowColumnClosure(){
 	}
 	return hideShowColumn;
 }
+
+function sortableRowsClosure(id){
+	
+	var sortableRows = function(){ 
+		jQuery("#" + id).jqGrid('sortableRows');
+	}
+	
+	return sortableRows;
+}
+
+function resizingGridClosure(id,params){
+	
+	var resizingGrid = function(){ 
+		jQuery("#"+id).jqGrid('gridResize', params);
+	}
+	
+	return resizingGrid;
+}
