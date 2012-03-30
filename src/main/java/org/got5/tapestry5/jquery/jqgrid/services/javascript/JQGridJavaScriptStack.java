@@ -74,7 +74,6 @@ public class JQGridJavaScriptStack implements JavaScriptStack {
 
         final Mapper<String, Asset> pathToAsset = new Mapper<String, Asset>()
         {
-            @Override
             public Asset map(String path)
             {
                 return assetSource.getExpandedAsset(path);
@@ -83,23 +82,22 @@ public class JQGridJavaScriptStack implements JavaScriptStack {
 
         final Mapper<Asset, StylesheetLink> assetToStylesheetLink = new Mapper<Asset, StylesheetLink>()
         {
-            @Override
             public StylesheetLink map(Asset input)
             {
                 return new StylesheetLink(input);
             };
         };
         
-        final Mapper<String, StylesheetLink> pathToStylesheetLink = pathToAsset.combine(assetToStylesheetLink);
+        final Mapper<String, StylesheetLink> pathToStylesheetLink = F.combine(pathToAsset, assetToStylesheetLink);
 
         
-        jqueryStack = F.flow("${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery.min.js",
+        jqueryStack = F.flow("${jquery.jqgrid.core.path}/jquery/jquery.min.js",
                      	  	"${jquery.jqgrid.core.path}/jquery.noconflict.js",
-                     	  	"${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery-ui-custom.min.js",
-                     	  	"${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery.contextmenu.js",
-                     	  	"${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery.layout.js",
-                     	  	"${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery.tablednd.js",
-                     	  	"${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/ui.multiselect.js"
+                     	  	"${jquery.jqgrid.core.path}/jquery/jquery-ui-custom.min.js",
+                     	  	"${jquery.jqgrid.core.path}/jquery/jquery.contextmenu.js",
+                     	  	"${jquery.jqgrid.core.path}/jquery/jquery.layout.js",
+                     	  	"${jquery.jqgrid.core.path}/jquery/jquery.tablednd.js",
+                     	  	"${jquery.jqgrid.core.path}/jquery/ui.multiselect.js"
                      	  	).map(pathToAsset).toList();
 
 
@@ -116,7 +114,7 @@ public class JQGridJavaScriptStack implements JavaScriptStack {
 
         } else {
         	
-        	stylesheetStack = F.flow("${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/css/ui.jqgrid.css")
+        	stylesheetStack = F.flow("${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/css/ui.jqgrid.css")
         	.map(pathToStylesheetLink).toList();
         	
         	

@@ -1,18 +1,19 @@
 (function($){
     
-	
-	/** Container of functions that may be invoked by the Tapestry.init() function. */
-    $.extend(Tapestry.Initializer, {
-        jqGrid: function(specs) {
-    	
-    		$("#" + specs.field).jqGrid(specs.params);
-    	
+	T5.extendInitializers(function(){
+		
+		function jqGrid(specs){
+			$("#" + specs.field).jqGrid(specs.params);
+	    	
             $("#" + specs.field).jqGrid('navGrid',specs.params.pager,{edit:false,add:false,del:false});
-            
-        }
-    });
+		}
+		
+		return {
+			jqGrid : jqGrid
+		}
+	});
 	
-	$.extend(Tapestry, {
+	$.extend(T5, {
 		jqGrid : {
 			firstDay: 0,
 			localized:false,
