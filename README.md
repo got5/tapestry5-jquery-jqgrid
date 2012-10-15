@@ -1,6 +1,7 @@
-# Tapestry 5 jQuery jqgrid integration Module - 1.0-SNAPSHOT
+# Tapestry 5 jQuery jqgrid integration Module - 1.1.0
 
 ## Changelog
+- 1.1.0 : use Tapestry5-jQuery 3.3.3
 - 1.0.1 : use Tapestry5-jQuery 2.6.1
 - 1.0.0 : initial releases
 
