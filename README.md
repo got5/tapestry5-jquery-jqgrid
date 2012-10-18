@@ -24,6 +24,8 @@ All kind of feedback is very welcome. Please use [Github issues system](http://g
 
 * Twitter: [http://twitter.com/GangOfTapestry5](http://twitter.com/GOTapestry5)
 
+##Questions? Ideas? Comments?
+http://groups.google.com/group/tapestry5-jquery
 
 ## License
 
