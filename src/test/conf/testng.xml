@@ -2,7 +2,7 @@
 <suite name="tapestry5-jquery Application Test Suite" annotations="1.5">
     <test name="JQuery Mobile Integration Tests"  enabled="true">
     
-        <parameter name="tapestry.web-app-folder" value="src/test/jquery/mobile/webapp"/>
+        <parameter name="tapestry.web-app-folder" value="src/test/jquery/jqgrid/webapp"/>
         <parameter name="browserStartCommand" value="*googlechrome" />
 
         <classes>
