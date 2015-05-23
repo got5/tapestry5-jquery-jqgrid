@@ -32,5 +32,21 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         setSpeed("200");
     }
 
+  
     
+    @Test
+	public void testBASIC_ColumnReordering(){
+		open("/BASIC_ColumnReordering");
+		waitForJqGridScript();
+	}
+    
+    private void waitForJqGridScript(){
+		new Wait() {
+			
+			@Override
+			public boolean until() {
+				return isElementPresent("//head/script[contains(@src,'jqgrid.js')]");
+			}
+		}.wait("The jqGrid JavaScript file is missing.", 5000l);
+	}
 }
