@@ -57,6 +57,24 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 		waitForJqGridScript();
 	}
     
+    @Test
+	public void testGrouping_changegrouping(){
+		open("/grouping_changegrouping");
+		waitForJqGridScript();
+		
+		select("//*[@id='chngroup']","label=First Name");
+        
+		final String expectedText = "Ronald - 1 Item(s)";
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+            	return getText("//*[@id='jqgridghead_0']/td/b").contains(expectedText);
+            }
+        }.wait("Expected text is missing ["+expectedText+"]", 5000l);
+	}
+    
     private void waitForJqGridScript(){
 		new Wait() {
 			
