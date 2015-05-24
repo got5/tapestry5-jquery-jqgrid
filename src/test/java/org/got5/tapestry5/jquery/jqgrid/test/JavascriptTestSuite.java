@@ -33,6 +33,23 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     }
 
   
+    @Test
+	public void testBASIC_ColumnChooser(){
+		open("/BASIC_ColumnChooser");
+		waitForJqGridScript();
+		
+		click("//*[@id='jqgh_firstName']/span/span[1]");
+        
+		final String expectedText = "Albert";
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+            	return getText("//*[@id='0']/td[2]").contains(expectedText);
+            }
+        }.wait("Expected text is missing ["+expectedText+"]", 5000l);
+	}
     
     @Test
 	public void testBASIC_ColumnReordering(){
