@@ -1,4 +1,4 @@
-<html t:type="layoutWithAccordion" t:title="Tapestry5 JQuery" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html t:type="layoutWithAccordion" t:title="Tapestry5 JQuery" t:activeElement="0" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
     
     
     <t:jquery.tabs  t:listTabData="prop:listTabData" t:activePanelId="0" />
@@ -12,14 +12,17 @@
 		<br/>
 		<br/>
 		## List Of Contributors<br/>
-		- Francois Facon as got5     	<br/>
+		- Francois Facon as got5,ffacon <br/>
 		- Emmanuel DEMEY as Gillespie59	<br/>
 		
 
 		<br/><br/>
 		## Changelog<br/>
-		
-		- 1.0-SNAPSHOT : initial releases					<br/>
+		- 1.2.0 : use Tapestry 5.3.8 Tapestry5-jQuery 3.3.10 <br/>
+		- 1.1.1 : use Tapestry 5.3.7 Tapestry5-jQuery 3.3.8 <br/>
+		- 1.1.0 : use Tapestry5-jQuery 3.3.3 <br/>
+		- 1.0.1 : use Tapestry5-jQuery 2.6.1 <br/>
+		- 1.0.0 : initial releases <br/>
 	</t:block>
    
     
