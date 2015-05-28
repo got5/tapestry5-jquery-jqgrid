@@ -75,6 +75,22 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         }.wait("Expected text is missing ["+expectedText+"]", 5000l);
 	}
     
+    @Test
+   	public void testGrouping_groupedheaders(){
+   		open("/grouping_groupedheaders");
+   		waitForJqGridScript();
+           
+   		final String expectedText = "COMPOSER - 2 Item(s)";
+           new Wait()
+           {
+               @Override
+               public boolean until()
+               {
+               	return getText("//*[@id='jqgridghead_1']/td/b").contains(expectedText);
+               }
+           }.wait("Expected text is missing ["+expectedText+"]", 5000l);
+   	}
+    
     private void waitForJqGridScript(){
 		new Wait() {
 			
