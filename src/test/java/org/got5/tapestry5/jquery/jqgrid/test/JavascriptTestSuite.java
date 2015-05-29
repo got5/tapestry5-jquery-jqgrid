@@ -33,6 +33,9 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
     }
 
   
+
+       
+    
     @Test
 	public void testBASIC_ColumnChooser(){
 		open("/BASIC_ColumnChooser");
@@ -89,6 +92,23 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
                	return getText("//*[@id='jqgridghead_1']/td/b").contains(expectedText);
                }
            }.wait("Expected text is missing ["+expectedText+"]", 5000l);
+   	}
+    
+    @Test
+   	public void testGrouping_groupingRowsCollapsed(){
+   		open("/grouping_groupingrowscollapsed");
+   		waitForJqGridScript();
+           
+   		final String expectedText = "ui-icon-circlesmall-plus";
+           new Wait()
+           {
+               @Override
+               public boolean until()
+               {
+     
+               	return isElementPresent("//*[@id='jqgridghead_0']/td/span[contains(@class,'ui-icon-circlesmall-plus')]");
+               }
+           }.wait("class is missing ["+expectedText+"]", 5000l);
    	}
     
     private void waitForJqGridScript(){
