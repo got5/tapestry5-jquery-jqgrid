@@ -111,6 +111,22 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
            }.wait("class is missing ["+expectedText+"]", 5000l);
    	}
     
+    @Test
+   	public void testGrouping_hideGroupingColumns(){
+   		open("/grouping_hidegroupingColumns");
+   		waitForJqGridScript();
+           
+   		final String expectedText = "ui-icon-circlesmall-minus";
+           new Wait()
+           {
+               @Override
+               public boolean until()
+               {
+               	return isElementPresent("//*[@id='jqgridghead_0']/td/span[contains(@class,'ui-icon-circlesmall-minus')]");
+               }
+           }.wait("class is missing ["+expectedText+"]", 5000l);
+   	}
+    
     private void waitForJqGridScript(){
 		new Wait() {
 			
