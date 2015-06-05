@@ -127,6 +127,22 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
            }.wait("class is missing ["+expectedText+"]", 5000l);
    	}
     
+    @Test
+    public void testGrouping_RtlSupport(){
+   		open("/grouping_rtlsupport");
+   		waitForJqGridScript();
+           
+   		final String expectedText = "tree-wrap-rtl";
+           new Wait()
+           {
+               @Override
+               public boolean until()
+               {
+               	return isElementPresent("//*[@id='jqgridghead_0']/td/span[contains(@class,'tree-wrap-rtl')]");
+               }
+           }.wait("class is missing ["+expectedText+"]", 5000l);
+   	}
+    
     private void waitForJqGridScript(){
 		new Wait() {
 			
