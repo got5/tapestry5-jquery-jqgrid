@@ -161,6 +161,23 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
         }.wait("Expected text is missing ["+expectedText+"]", 5000l);
    	}
     
+    
+    @Test
+   	public void testGrouping_withArrayData(){
+   		open("/grouping_simplegroupingwitharraydata");
+   		waitForJqGridScript();
+           
+   		final String expectedText = "ARTIST";
+           new Wait()
+           {
+               @Override
+               public boolean until()
+               {
+               	return getText("//*[@id='7']/td[3]").contains(expectedText);
+               }
+           }.wait("Expected text is missing ["+expectedText+"]", 5000l);
+   	}
+    
     private void waitForJqGridScript(){
 		new Wait() {
 			
