@@ -143,6 +143,24 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
            }.wait("class is missing ["+expectedText+"]", 5000l);
    	}
     
+    @Test
+    public void testSortableRows(){
+   		open("/SortableRows");
+   		waitForJqGridScript();
+           
+   		click("//*[@id='jqgh_occupation']");
+        
+		final String expectedText = "ARTIST";
+        new Wait()
+        {
+            @Override
+            public boolean until()
+            {
+            	return getText("//*[@id='0']/td[3]").contains(expectedText);
+            }
+        }.wait("Expected text is missing ["+expectedText+"]", 5000l);
+   	}
+    
     private void waitForJqGridScript(){
 		new Wait() {
 			
