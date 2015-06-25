@@ -107,7 +107,7 @@ public class JQGridJavaScriptStack implements JavaScriptStack {
         	.map(pathToStylesheetLink).toList();
         	
             javaScriptStack = F
-                .flow("${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery.jqgrid.min.js",             	  	 
+                .flow("${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/minified/jquery.jqgrid.min.js",             	  	 
     				  "${jquery.jqgrid.core.path}/jqgrid.js")
                 	  
             .map(pathToAsset).toList();
@@ -122,25 +122,27 @@ public class JQGridJavaScriptStack implements JavaScriptStack {
         	
             javaScriptStack = F
                 .flow("${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/plugins/ui.multiselect.js",
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.base.js", // jqGrid base
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.celledit.js", // jqGrid cell editing
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.common.js", // jqGrid common for editing
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.custom.js", //jqGrid custom 
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.filter.js",
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.formedit.js", // jqGrid Form editing
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.grouping.js", //jqGrid grouping
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.import.js", //jqGrid import
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.inlinedit.js", // jqGrid inline editing
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.jqueryui.js", //jQuery UI utils
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.loader.js", //jqGrid loader
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.subgrid.js", //jqGrid subgrid
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.tbltogrid.js", //jqGrid table to grid
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/grid.treegrid.js", //jqGrid treegrid
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/jqDnR.js",
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/jqModal.js",
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/jquery.fmatter.js", //jqGrid formater
-                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/src/JsonXml.js", //xmljson utils
-                	   
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.base.js", // jqGrid base
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.celledit.js", // jqGrid cell editing
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.common.js", // jqGrid common for editing
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.custom.js", //jqGrid custom 
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.filter.js",
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.formedit.js", // jqGrid Form editing
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.grouping.js", //jqGrid grouping
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.import.js", //jqGrid import
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.inlinedit.js", // jqGrid inline editing
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.jqueryui.js", //jQuery UI utils
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.pivot.js", //jqGrid pivot
+                	  //"${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.loader.js", //jqGrid loader
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.subgrid.js", //jqGrid subgrid
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.tbltogrid.js", //jqGrid table to grid
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/grid.treegrid.js", //jqGrid treegrid
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jqDnR.js",
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jqModal.js",
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery.fmatter.js", //jqGrid formater
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/JsonXml.js", //xmljson utils
+                	  
+                	  "${jquery.jqgrid.core.path}/${jquery.jqgrid.version}/js/jquery.jqgrid.js",  
                 	  "${jquery.jqgrid.core.path}/jqgrid.js")
             .map(pathToAsset).toList();
 
