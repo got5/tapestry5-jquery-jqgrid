@@ -41,7 +41,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 		open("/BASIC_ColumnChooser");
 		waitForJqGridScript();
 		
-		click("//*[@id='jqgh_firstName']/span/span[1]");
+		click("//*[@id='jqgh_jqGrid_firstName']");
         
 		final String expectedText = "Albert";
         new Wait()
@@ -67,13 +67,13 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
 		
 		select("//*[@id='chngroup']","label=First Name");
         
-		final String expectedText = "Ronald - 1 Item(s)";
+		final String expectedText = "Albert - 1 Item(s)";
         new Wait()
         {
             @Override
             public boolean until()
             {
-            	return getText("//*[@id='jqgridghead_0']/td/b").contains(expectedText);
+            	return getText("//*[@id='jqgridghead_0_0']/td/b").contains(expectedText);
             }
         }.wait("Expected text is missing ["+expectedText+"]", 5000l);
 	}
@@ -89,7 +89,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
                @Override
                public boolean until()
                {
-               	return getText("//*[@id='jqgridghead_1']/td/b").contains(expectedText);
+               	return getText("//*[@id='jqgridghead_0_1']/td/b").contains(expectedText);
                }
            }.wait("Expected text is missing ["+expectedText+"]", 5000l);
    	}
@@ -105,8 +105,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
                @Override
                public boolean until()
                {
-     
-               	return isElementPresent("//*[@id='jqgridghead_0']/td/span[contains(@class,'ui-icon-circlesmall-plus')]");
+               	return isElementPresent("//*[@id='jqgridghead_0_0']/td/span[contains(@class,'ui-icon-circlesmall-plus')]");
                }
            }.wait("class is missing ["+expectedText+"]", 5000l);
    	}
@@ -122,7 +121,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
                @Override
                public boolean until()
                {
-               	return isElementPresent("//*[@id='jqgridghead_0']/td/span[contains(@class,'ui-icon-circlesmall-minus')]");
+               	return isElementPresent("//*[@id='jqgridghead_0_0']/td/span[contains(@class,'ui-icon-circlesmall-minus')]");
                }
            }.wait("class is missing ["+expectedText+"]", 5000l);
    	}
@@ -138,7 +137,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
                @Override
                public boolean until()
                {
-               	return isElementPresent("//*[@id='jqgridghead_0']/td/span[contains(@class,'tree-wrap-rtl')]");
+               	return isElementPresent("//*[@id='jqgridghead_0_0']/td/span[contains(@class,'tree-wrap-rtl')]");
                }
            }.wait("class is missing ["+expectedText+"]", 5000l);
    	}
@@ -148,7 +147,7 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
    		open("/SortableRows");
    		waitForJqGridScript();
            
-   		click("//*[@id='jqgh_occupation']");
+   		click("//*[@id='jqgh_jqGrid_occupation']");
         
 		final String expectedText = "ARTIST";
         new Wait()
@@ -173,7 +172,8 @@ public abstract class JavascriptTestSuite extends SeleniumTestCase
                @Override
                public boolean until()
                {
-               	return getText("//*[@id='7']/td[3]").contains(expectedText);
+            	 //*[@id="jqgridghead_0_0"]/td
+               	return getText("//*[@id='jqgridghead_0_0']/td").contains(expectedText);
                }
            }.wait("Expected text is missing ["+expectedText+"]", 5000l);
    	}
