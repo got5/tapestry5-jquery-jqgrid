@@ -297,6 +297,10 @@ public class JQGrid implements ClientElement
      int rowsPerPage=Integer.parseInt(rowsSelected);
      
      String sidx = request.getParameter(SIDX);
+     String arrayString[] = sidx.split("\\s+");
+     //get only the start
+     sidx = arrayString[0];
+     
      String sord = request.getParameter(SORD);
      
      JSONObject response = new JSONObject();
