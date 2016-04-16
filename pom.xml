@@ -206,4 +206,15 @@
 	<properties>
 		<tapestry-release-version>5.3.8</tapestry-release-version>
 	</properties>
+	
+	<developers>
+   		<developer>
+      		<id>ffacon</id>
+      		<name>François FACON</name>
+      		<roles>
+        		<role>Developer,Manager</role>
+      		</roles>
+      		<timezone>+1</timezone>
+   		</developer>
+  	</developers>
 </project>
