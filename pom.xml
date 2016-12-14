@@ -45,7 +45,7 @@
     	<dependency>
 			<groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
-            <version>3.4.2</version>
+            <version>3.5.3</version>
 		</dependency>
 
 	</dependencies>
@@ -158,29 +158,6 @@
 		</plugins>
 	</reporting>
 <repositories>
-		<repository>
-			<id>devlab722-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>devlab722-snapshot-repo</id>
-			<url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		
-
 		<repository>
 			<id>apache-snapshots</id>
 			<url>http://repository.apache.org/snapshots</url>
