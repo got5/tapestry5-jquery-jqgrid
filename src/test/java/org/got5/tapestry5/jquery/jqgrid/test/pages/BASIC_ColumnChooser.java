@@ -30,8 +30,14 @@ import org.got5.tapestry5.jquery.jqgrid.components.JQGrid;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
-@ImportJQueryUI(value={
-        "jquery.ui.mouse", "jquery.ui.draggable","jquery.ui.sortable","jquery.ui.dialog"})
+@ImportJQueryUI({"ie",
+	 			"version",
+	 			"widget",
+	 			"data",
+	 			"scroll-parent",
+	 			"widgets/mouse", 
+	 			"widgets/sortable",
+	 			"widgets/dialog"})
 @Import(library = { "context:static/js/demo.js"})
 public class BASIC_ColumnChooser extends Basic_Sample
 {
