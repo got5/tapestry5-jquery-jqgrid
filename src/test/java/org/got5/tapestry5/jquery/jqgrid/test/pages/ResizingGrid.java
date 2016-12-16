@@ -30,8 +30,14 @@ import org.got5.tapestry5.jquery.jqgrid.components.JQGrid;
 import org.got5.tapestry5.jquery.utils.JQueryTabData;
 
 
-@ImportJQueryUI(value={
-        "jquery.ui.mouse", "jquery.ui.draggable","jquery.ui.resizable"})
+@ImportJQueryUI({"ie",
+		"version",
+		"widget",
+		"data",
+		"scroll-parent",
+		"widgets/mouse", 
+		"widgets/draggable",
+		"widgets/resizable"})
 @Import(library = { "context:static/js/demo.js"})
 public class ResizingGrid extends Basic_Sample
 {
